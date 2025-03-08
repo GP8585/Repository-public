@@ -25,7 +25,9 @@ print('''
         9. Редактировать предметы
         10. Вывод информации по всем оценкам для определенного ученика
         11. Вывод среднего балла по каждому предмету по определенному ученику
-        12. Выход из программы
+        12. Добавить ученика
+        13. Добавить предмет
+        14. Выход из программы
         ''')
 
 while True:
@@ -153,5 +155,26 @@ while True:
                 print(f"{subject}: {average:.2f}")
 
     elif command == 12:
-        print('12. Выход из программы')
+        print("12. Добавить ученика")
+        student_new = input("Введите имя нового ученика: ").strip()
+        if student_new not in students:
+            students.append(student_new)
+            students_marks[student_new] = {class_: [] for class_ in classes}
+            print(f"Ученик {student_new} добавлен успешно.")
+        else:
+            print("Ошибка: Ученик с таким именем уже существует.")
+
+    elif command == 13:
+        print("Добавить предмет")
+        class_new = input("Введите имя предмета")
+        if class_new not in classes:
+            classes.append(class_new)
+            for student in students_marks:
+                students_marks[student][class_new] = []
+                print(f"Предмет '{class_new}' успешно добавлен.")
+            else:
+                print("Ошибка: Такой предмет уже существует.")
+
+    elif command == 14:
+        print('14. Выход из программы')
         break
